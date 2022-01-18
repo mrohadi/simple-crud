@@ -1,0 +1,78 @@
+<h2>List User</h2>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">userName</th>
+      <th scope="col">Age</th>
+      <th scope="col">Update</th>
+      <th scope="col">Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of users; index as i">
+      <th scope="row">{{ i + 1 }}</th>
+      <td>
+        {{ user.userName | uppercase }}
+      </td>
+      <td>
+        {{ user.id }}
+      </td>
+      <td>
+        <button class="btn btn-warning" (click)="onSelected(user)">
+          Update
+        </button>
+      </td>
+      <td>
+        <button class="btn btn-danger" (click)="onDelete(user.id)">
+          Delete
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>Update User</h2>
+<div *ngIf="selectedUser">
+  <div class="mb-3">
+    <label for="exampleFormControlInput1" class="form-label">UserName</label>
+    <input
+      class="form-control"
+      id="exampleFormControlInput1"
+      [(ngModel)]="selectedUser.userName"
+    />
+  </div>
+  <div class="mb-3">
+    <label for="exampleFormControlInput1" class="form-label">Age</label>
+    <input
+      type="email"
+      class="form-control"
+      id="exampleFormControlInput1"
+      [(ngModel)]="selectedUser.age"
+    />
+  </div>
+
+  <button class="btn btn-primary" (click)="onAdd()">Update</button>
+</div>
+
+<h2>Add User</h2>
+<div class="mb-3">
+  <label for="exampleFormControlInput1" class="form-label">UserName</label>
+  <input
+    class="form-control"
+    id="exampleFormControlInput1"
+    [(ngModel)]="user.userName"
+  />
+</div>
+<div class="mb-3">
+  <label for="exampleFormControlInput1" class="form-label">Age</label>
+  <input
+    type="email"
+    class="form-control"
+    id="exampleFormControlInput1"
+    [(ngModel)]="user.age"
+  />
+</div>
+
+<button class="btn btn-primary" (click)="onAdd()">Add</button>
